@@ -1,15 +1,16 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -g
-OBJ = main.o ls_core.o
-EXEC = myls
+CFLAGS = -Wall -Wextra -std=c99 -D_DEFAULT_SOURCE -Iinclude -g
+SRC = $(wildcard src/*.c)
+OBJ = $(SRC:.c=.o)
+EXEC = ls
 
 all: $(EXEC)
 
 $(EXEC): $(OBJ)
-	$(CC) $(CFLAGS) -o $@ $(OBJ)
+	$(CC) $(OBJ) -o $@
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $<
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJ) $(EXEC)
+	rm -f src/*.o $(EXEC)
