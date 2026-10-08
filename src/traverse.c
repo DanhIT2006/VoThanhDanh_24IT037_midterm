@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include <dirent.h>
 #include <string.h>
+#include <unistd.h>
 
 void traverse_directory(const char *path, int print_dir_name) {
     DIR *dir = opendir(path);

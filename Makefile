@@ -1,7 +1,6 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -std=c99 -D_DEFAULT_SOURCE -Iinclude -g
-SRC = $(wildcard src/*.c)
-OBJ = $(SRC:.c=.o)
+OBJ = src/main.o src/options.o src/file_entry.o src/sort.o src/display.o src/traverse.o
 EXEC = ls
 
 all: $(EXEC)
@@ -9,8 +8,8 @@ all: $(EXEC)
 $(EXEC): $(OBJ)
 	$(CC) $(OBJ) -o $@
 
-%.o: %.c
+.c.o:
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f src/*.o $(EXEC)
+	rm -f $(OBJ) $(EXEC)
